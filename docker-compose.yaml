@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  frontend:
+    image: node:16-alpine
+    container_name: jordan_front
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    stdin_open: true
+    tty: true
+    command: sh
+    ports:
+      - 3000:3000
+    restart: on-failure
