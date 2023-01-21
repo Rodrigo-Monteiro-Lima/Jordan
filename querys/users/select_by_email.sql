@@ -1,0 +1,1 @@
+SELECT * FROM jordan_prod.users WHERE email = 'jordan@nba.com';
