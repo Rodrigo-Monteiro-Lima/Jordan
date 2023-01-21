@@ -1,0 +1,1 @@
+DELETE FROM jordan_dev.users WHERE email = 'test@test.com';
