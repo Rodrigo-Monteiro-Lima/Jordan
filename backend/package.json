@@ -5,12 +5,12 @@
   "main": "src/api/server.js",
   "scripts": {
     "test:coverage": "nyc --all --include src/models --include src/services --include src/controllers mocha tests/unit/**/*.js --exit",
-    "test": "mocha tests/**/*.js --exit",
+    "test": "mocha tests/**/*.js -- --watch",
     "lint": "eslint src/**/*.js",
     "start": "node .",
     "dev": "nodemon .",
     "restore": "node data/restore.js",
-    "test:integration": "mocha __tests__/integration/**/*.test.js"
+    "test:integration": "mocha tests/integration/**/*.test.js --watch"
   },
   "keywords": [],
   "author": "",
