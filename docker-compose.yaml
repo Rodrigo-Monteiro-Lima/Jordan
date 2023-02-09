@@ -12,11 +12,24 @@ services:
     ports:
       - 3000:3000
     restart: on-failure
+  backend:
+    image: node:16-alpine
+    container_name: jordan_back
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    stdin_open: true
+    tty: true
+    command: sh
+    ports:
+      - 3001:3001
+    restart: on-failure
   db:
     image: mysql:8.0
     container_name: jordan_db
     volumes:
       - ./database:/var/lib/mysql
+      - ./jordan.sql:/docker-entrypoint-initdb.d/jordan.sql
     ports:
       - 3306:3306
     restart: on-failure
