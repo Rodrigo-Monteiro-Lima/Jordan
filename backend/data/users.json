@@ -52,5 +52,11 @@
     "name": "James Wilson",
     "email": "james@wilson.com",
     "password": "password9"
+  },
+  {
+    "id": 11,
+    "name": "Rodrigo Monteiro",
+    "email": "rodrig@monteiro.com",
+    "password": "paswordRodrigo"
   }
 ]
