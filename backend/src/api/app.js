@@ -7,6 +7,9 @@ const app = express();
 app.use(express.json());
 
 const STATUS_CODE_OK = 200;
+const STATUS_NOT_FOUND = 404;
+const STATUS_CODE_NO_CONTENT = 204;
+const STATUS_CODE_CREATED = 201;
 
 app.get('/users', async (_req, res) => {
   const contentPath = path.resolve(__dirname, '..', '..', 'data', 'users.json');
@@ -18,5 +21,18 @@ app.get('/users', async (_req, res) => {
   });
   return res.status(STATUS_CODE_OK).json(response);
 });
+
+app.get('/users/:id', async (req, res) => {
+  const id = Number(req.params.id);
+  const contentPath = path.resolve(__dirname, '..', '..', 'data', 'users.json');
+  const content = await fs.readFile(contentPath, 'utf8');
+  const users = JSON.parse(content);
+  const foundUser = users.find((user) => user.id === id);
+  if (foundUser === undefined) {
+    return res.status(STATUS_NOT_FOUND).json({ message: 'User Not Found'});
+  }
+  const { password: _, ...rest } = foundUser;
+  return res.status(STATUS_CODE_OK).json(rest)
+})
 
 module.exports = app
