@@ -52,11 +52,5 @@
     "name": "James Wilson",
     "email": "james@wilson.com",
     "password": "password9"
-  },
-  {
-    "id": 10,
-    "name": "Jessica Thompson",
-    "email": "jessica@thompson.com",
-    "password": "password10"
   }
 ]
