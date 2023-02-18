@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs/promises');
 const path = require('path');
+const { userController } = require('../controllers')
 
 const app = express();
 
@@ -22,18 +23,7 @@ app.get('/users', async (_req, res) => {
   return res.status(STATUS_CODE_OK).json(response);
 });
 
-app.get('/users/:id', async (req, res) => {
-  const id = Number(req.params.id);
-  const contentPath = path.resolve(__dirname, '..', '..', 'data', 'users.json');
-  const content = await fs.readFile(contentPath, 'utf8');
-  const users = JSON.parse(content);
-  const foundUser = users.find((user) => user.id === id);
-  if (!foundUser) {
-    return res.status(STATUS_NOT_FOUND).json({ message: 'User Not Found'});
-  }
-  const { password: _, ...rest } = foundUser;
-  return res.status(STATUS_CODE_OK).json(rest)
-})
+app.get('/users/:id', userController.getUserById);
 
 app.delete('/users/:id', async (req, res) => {
   const id = Number(req.params.id);
