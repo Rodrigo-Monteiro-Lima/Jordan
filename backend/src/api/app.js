@@ -51,4 +51,25 @@ app.post('/users', async (req, res) => {
   return res.status(STATUS_CODE_CREATED).json(newUser);
 });
 
+
+app.put('/users/:id', async (req, res) => {
+  const {name, email, password} = req.body;
+  const {id} = req.params;
+  const contentPath = path.resolve(__dirname, '..', '..', 'data', 'users.json');
+  const content = await fs.readFile(contentPath, 'utf8');
+  const users = JSON.parse(content);
+  const newUsers = users.map((user) => {
+    if (Number(id) === user.id) {
+      return {
+        ...user,
+        name,
+        email,
+        password,
+      };
+    }
+    return user;
+  });
+  await fs.writeFile(contentPath, JSON.stringify(newUsers, null, 2), 'utf8');
+  return res.sendStatus(STATUS_CODE_OK);
+});
 module.exports = app
