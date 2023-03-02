@@ -1,5 +1,8 @@
+const express = require('express');
 const playerRouter = require('./players');
 
-module.exports = {
-  playerRouter,
-}
+const routes = express.Router();
+
+routes.use('/players', playerRouter);
+
+module.exports = routes
