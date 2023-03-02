@@ -13,7 +13,7 @@ const readFile = async () => {
 
 const writeFile = async (content) => {
   try {
-    const completePath = join(__dirname, path);
+    const completePath = resolve(__dirname, path);
     await fs.writeFile(completePath, JSON.stringify(content));
   } catch (e) {
     throw new Error(e.message);

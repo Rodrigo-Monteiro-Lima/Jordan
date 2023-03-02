@@ -23,7 +23,19 @@ const getAllUser = async () => {
   }
 }
 
+const deleteUser = async (users) => {
+  try {
+    await writeFile(users);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+
+
 module.exports = {
   getUserById,
-  getAllUser
+  getAllUser,
+  deleteUser,
 }

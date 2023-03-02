@@ -18,7 +18,18 @@ const getAllUser = async () => {
   return response;
 }
 
+const deleteUSer = async (id) => {
+    const users = await userModel.getAllUser();
+    if (users === null) return null;
+    const foundUser = users.find((user) => user.id === id);
+    if (!foundUser) return undefined;
+    const filterUsers = users.filter((user) => user.id !== id);
+    await userModel.deleteUser(filterUsers);
+    return true;
+}
+
 module.exports = {
   getUserById,
   getAllUser,
+  deleteUSer,
 }

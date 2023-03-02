@@ -20,7 +20,17 @@ const getAllUser = async (_req, res) => {
   return res.status(200).json(users);
 }
 
+const deleteUser = async (req, res) => {
+  const id = Number(req.params.id);
+  const delUser = await userService.deleteUSer(id);
+  if (delUser === undefined) {
+    return res.status(404).json({ message: 'User Not Found'});
+  }
+  return res.sendStatus(204);
+}
+
 module.exports = {
   getUserById,
   getAllUser,
+  deleteUser,
 }
