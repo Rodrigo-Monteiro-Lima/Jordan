@@ -12,16 +12,7 @@ const STATUS_NOT_FOUND = 404;
 const STATUS_CODE_NO_CONTENT = 204;
 const STATUS_CODE_CREATED = 201;
 
-app.get('/users', async (_req, res) => {
-  const contentPath = path.resolve(__dirname, '..', '..', 'data', 'users.json');
-  const content = await fs.readFile(contentPath, 'utf8');
-  const users = JSON.parse(content);
-  const response = users.map((user) => {
-    const { password: _, ...rest } = user;
-    return rest;
-  });
-  return res.status(STATUS_CODE_OK).json(response);
-});
+app.get('/users', userController.getAllUser);
 
 app.get('/users/:id', userController.getUserById);
 
