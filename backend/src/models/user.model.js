@@ -32,10 +32,20 @@ const deleteUser = async (users) => {
   }
 }
 
+const createUser = async (users) => {
+  try {
+    await writeFile(users);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 
 
 module.exports = {
   getUserById,
   getAllUser,
   deleteUser,
+  createUser,
 }

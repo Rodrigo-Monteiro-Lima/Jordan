@@ -29,8 +29,18 @@ const deleteUser = async (req, res) => {
   return res.sendStatus(204);
 }
 
+const createUser = async (req, res) => {
+  const {name, email, password} = req.body;
+  const newUser = await userService.createUser(name, email, password)
+  if (newUser === null) {
+    return res.status(500).json({ message: 'Internal Server Error'});
+  }
+  return res.status(201).json(newUser);
+}
+
 module.exports = {
   getUserById,
   getAllUser,
   deleteUser,
+  createUser
 }

@@ -18,17 +18,7 @@ app.get('/users/:id', userController.getUserById);
 
 app.delete('/users/:id', userController.deleteUser);
 
-app.post('/users', async (req, res) => {
-  const { body } = req;
-  const contentPath = path.resolve(__dirname, '..', '..', 'data', 'users.json');
-  const content = await fs.readFile(contentPath, 'utf8');
-  const users = JSON.parse(content);
-  const newId = users.map(({id}) => id).sort()[users.length - 1] + 2;
-  const newUser = {id: newId, ...body }
-  users.push(newUser);
-  await fs.writeFile(contentPath, JSON.stringify(users, null, 2), 'utf8');
-  return res.status(STATUS_CODE_CREATED).json(newUser);
-});
+app.post('/users', userController.createUser);
 
 
 app.put('/users/:id', async (req, res) => {

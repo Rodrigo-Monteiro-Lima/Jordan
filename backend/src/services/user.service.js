@@ -28,8 +28,20 @@ const deleteUSer = async (id) => {
     return true;
 }
 
+const createUser = async (name, email, password) => {
+  const users = await userModel.getAllUser();
+  if (users === null) return null;
+  const newId = users.map(({id}) => id).sort()[users.length - 1] + 1;
+  const newUser = {id: newId, name, email, password }
+  users.push(newUser);
+  const newUsers = await userModel.createUser(users);
+  if (newUsers === null) return null;
+  return newUser;
+}
+
 module.exports = {
   getUserById,
   getAllUser,
   deleteUSer,
+  createUser,
 }
