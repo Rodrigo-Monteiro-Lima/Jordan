@@ -38,9 +38,23 @@ const createUser = async (req, res) => {
   return res.status(201).json(newUser);
 }
 
+const updateUser = async (req, res) => {
+  const {name, email, password} = req.body;
+  const {id} = req.params;
+  const user = await userService.updateUser(id, name, email, password)
+  if (user === null) {
+    return res.status(500).json({ message: 'Internal Server Error'});
+  }
+  if (user === undefined) {
+    return res.status(404).json({ message: 'User Not Found'});
+  }
+  return res.status(200).json(user);
+}
+
 module.exports = {
   getUserById,
   getAllUser,
   deleteUser,
-  createUser
+  createUser,
+  updateUser
 }

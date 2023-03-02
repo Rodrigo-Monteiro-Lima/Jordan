@@ -41,6 +41,15 @@ const createUser = async (users) => {
   }
 }
 
+const updateUser = async (users) => {
+  try {
+    await writeFile(users);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 
 
 module.exports = {
@@ -48,4 +57,5 @@ module.exports = {
   getAllUser,
   deleteUser,
   createUser,
+  updateUser,
 }

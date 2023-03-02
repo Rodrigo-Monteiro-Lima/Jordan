@@ -39,9 +39,33 @@ const createUser = async (name, email, password) => {
   return newUser;
 }
 
+const updateUser = async (id, name, email, password) => {
+  const users = await userModel.getAllUser();
+  if (users === null) return null;
+  const foundUser = users.find((user) => user.id === Number(id));
+  if (!foundUser) return undefined;
+  const newUsers = users.map((user) => {
+    if (Number(id) === user.id) {
+      return {
+        ...user,
+        name,
+        email,
+        password,
+      };
+    }
+    return user;
+  });
+  const newUser = await userModel.updateUser(newUsers)
+  if (newUser === null) return null;
+  const user = await userModel.getUserById(Number(id));
+  const { password: _, ...rest } = user;
+  return rest;
+}
+
 module.exports = {
   getUserById,
   getAllUser,
   deleteUSer,
   createUser,
+  updateUser,
 }
