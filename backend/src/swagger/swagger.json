@@ -1,0 +1,274 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Jordan API",
+    "description": "API to provide data Jordan application data",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/players/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Player request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Michael Jordan"
+                },
+                "birthdate": {
+                  "type": "string",
+                  "example": "20-06-1967"
+                },
+                "weight": {
+                  "type": "number",
+                  "example": 100
+                },
+                "height": {
+                  "type": "number",
+                  "example": 205
+                },
+                "localId": {
+                  "type": "number",
+                  "example": 1
+                },
+                "positions": {
+                  "type": "array",
+                  "example": [
+                    1
+                  ],
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "predominantHand": {
+                  "type": "string",
+                  "example": "Esquerda"
+                },
+                "currentTeam": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 5
+                    },
+                    "dateSign": {
+                      "type": "string",
+                      "example": "04-01-2023"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Player created successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Michael Jordan"
+                },
+                "birthdate": {
+                  "type": "string",
+                  "example": "20-06-1967"
+                },
+                "weight": {
+                  "type": "number",
+                  "example": 100
+                },
+                "height": {
+                  "type": "number",
+                  "example": 205
+                },
+                "local": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "São Paulo"
+                    }
+                  }
+                },
+                "positions": {
+                  "type": "array",
+                  "example": [
+                    1
+                  ],
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "predominantHand": {
+                  "type": "string",
+                  "example": "Esquerda"
+                },
+                "currentTeam": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 5
+                    },
+                    "dateSign": {
+                      "type": "string",
+                      "example": "04-01-2023"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}

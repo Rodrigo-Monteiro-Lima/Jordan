@@ -10,7 +10,8 @@
     "start": "node .",
     "dev": "nodemon .",
     "restore": "node data/restore.js",
-    "test:integration": "mocha tests/integration/**/*.test.js --watch"
+    "test:integration": "mocha tests/integration/**/*.test.js --watch",
+    "swagger:generate": "node ./src/swagger/swagger.js"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +21,8 @@
     "express": "4.17.1",
     "express-async-errors": "3.1.1",
     "joi": "17.6.0",
-    "mysql2": "2.3.3"
+    "mysql2": "2.3.3",
+    "swagger-ui-express": "^4.6.2"
   },
   "devDependencies": {
     "chai": "^4.3.6",
@@ -29,6 +31,7 @@
     "mocha": "^10.0.0",
     "nodemon": "2.0.15",
     "nyc": "15.1.0",
-    "sinon": "^14.0.0"
+    "sinon": "^14.0.0",
+    "swagger-autogen": "^2.23.1"
   }
 }
